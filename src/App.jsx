@@ -490,8 +490,8 @@ export default function WatchlistSwipe() {
           <div className="mt-3 rounded p-3 text-[11px] leading-6"
             style={{ background: C.ink2, border: `1px solid ${C.line}` }}>
             <p style={{ color: C.dim }}>
-              پوستر، سال، امتیاز، ژانر و خلاصه از TMDB می‌آیند. کلید داخل برنامه هست —
-              این فیلد فقط برای گذاشتن کلید دیگر است.
+              برای دسته‌بندی عنوان‌ها کلید لازم نیست. برای دریافت پوستر و اطلاعات، کلید TMDB خودت را وارد کن.
+              کلیدی که اینجا ذخیره می‌کنی در مرورگر یا فضای ذخیره‌سازی میزبان می‌ماند. با فعال شدن جست‌وجو، عنوان‌ها به TMDB فرستاده می‌شوند.
             </p>
             <div className="flex gap-2 mt-2">
               <input type="password" value={keyDraft} placeholder="TMDB API key"

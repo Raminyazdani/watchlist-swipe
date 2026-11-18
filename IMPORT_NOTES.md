@@ -1,6 +1,6 @@
 # Import provenance
 
-This private repository was prepared from an existing local Watchlist Swipe
+This repository was prepared from an existing local Watchlist Swipe
 snapshot on 2026-10-30. The untouched local snapshot and the original working
 project were retained outside this repository.
 
