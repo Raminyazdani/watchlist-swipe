@@ -25,3 +25,15 @@ const local = {
 
 export const storage = hasHostStorage ? window.storage : local;
 export const storageKind = hasHostStorage ? "host" : "localStorage";
+
+// Commit local edits before the next paint so an immediate reload can restore them.
+// Embedded hosts keep their existing debounce for asynchronous storage calls.
+export function saveChange(key, value, onError) {
+  const write = () => storage.set(key, JSON.stringify(value)).catch(onError);
+  if (!hasHostStorage) {
+    write();
+    return;
+  }
+  const timer = setTimeout(write, 350);
+  return () => clearTimeout(timer);
+}

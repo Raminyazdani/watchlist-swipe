@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { storage } from "./storage";
+import React, { useState, useEffect, useLayoutEffect, useRef, useMemo, useCallback } from "react";
+import { saveChange, storage } from "./storage";
 
 /* ------------------------------------------------------------------ */
 /*  داده‌ی اولیه: لیست تمیزشده و بدون تکرار                            */
@@ -176,16 +176,13 @@ export default function WatchlistSwipe() {
   /* --- ذخیره --- */
   const persist = (key, value, flag) => {
     if (status === "loading" || !touched.current[flag]) return;
-    storage.set(key, JSON.stringify(value)).catch(() => setStatus("offline"));
+    return saveChange(key, value, () => setStatus("offline"));
   };
-  useEffect(() => {
-    const id = setTimeout(() => persist(STORE_KEY, { decisions, at: Date.now() }, "d"), 350);
-    return () => clearTimeout(id);
-  }, [decisions, status]);
-  useEffect(() => {
-    const id = setTimeout(() => persist(EDITS_KEY, edits, "e"), 350);
-    return () => clearTimeout(id);
-  }, [edits, status]);
+  useLayoutEffect(
+    () => persist(STORE_KEY, { decisions, at: Date.now() }, "d"),
+    [decisions, status]
+  );
+  useLayoutEffect(() => persist(EDITS_KEY, edits, "e"), [edits, status]);
   useEffect(() => {
     if (!Object.keys(meta).length) return;
     const id = setTimeout(() => {

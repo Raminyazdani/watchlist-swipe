@@ -68,4 +68,4 @@ This product uses the TMDB API but is not endorsed or certified by TMDB.
 
 ## Validation
 
-`npm test` exercises empty-key, cancellation and configured-key bulk lookup behavior with a mocked network. Use the steps above to check the keyless card and list workflow in a browser.
+`npm test` exercises empty-key, cancellation and configured-key bulk lookup behavior with a mocked network. It also checks immediate browser writes and cancellation of a pending host write. Use the steps above to check the keyless card and list workflow in a browser.
